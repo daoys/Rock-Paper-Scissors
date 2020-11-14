@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <script>
+        function compPlay() {   //function for computer choice
+            var randInt = Math.floor(Math.random() * 100);
+            if (randInt < 33) {
+                var compChoice = "rock"
+            }
+            else if (randInt >= 33 && randInt < 66) {
+                var compChoice = "paper"
+            }
+            else {
+                var compChoice = "scissors"
+            }
+            return compChoice;
+        }
+
+        function userPrompt() {     //function to get user prompt and select choice
+            var userChoice = window.prompt("Pick your weapon");
+            userChoice = userChoice.toLowerCase();
+            if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors") {
+                return userChoice;
+            }
+            else {
+                window.alert("Incorrect try again");
+                userPrompt();
+            }
+        }
+        function playRound() {
+            var userWeap = userPrompt();
+            var compWeap = compPlay();
+            var userScore = 0;
+            var compScore = 0;
+            while (userScore < 5 || compScore < 5) {
+
+                if (userWeap === "rock" && compWeap === "scissors" || userWeap === "paper" && compWeap === "rock" || userWeap === "scissors" && compWeap === "paper") {
+                    userScore++
+                    if (userScore == 5) {
+                        break;
+                    }
+                    window.alert("You won");
+                    userWeap = userPrompt();
+                    compWeap = compPlay();
+                }
+                else if (userWeap === "rock" && compWeap === "paper" || userWeap === "paper" && compWeap === "scissors" || userWeap === "scissors" && compWeap === "rock") {
+                    compScore++
+                    if (compScore == 5) {
+                        break;
+                    }
+                    window.alert("You lose");
+                    userWeap = userPrompt();
+                    compWeap = compPlay();
+                }
+                else {
+                    window.alert("Tie")
+                    userWeap = userPrompt();
+                    compWeap = compPlay();
+                }
+            }
+            if (userScore == 5) {
+                window.alert("You won the game")
+            }
+            else {
+                window.alert("You lost the game")
+            }
+        }
+        var str = "str";
+        playRound();
+
+
+
+
+    </script>
+
+</body>
+
+</html>
